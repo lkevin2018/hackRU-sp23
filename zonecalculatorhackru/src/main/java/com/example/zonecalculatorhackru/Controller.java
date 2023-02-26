@@ -107,25 +107,14 @@ public class Controller {
         }
     }
 
-    /**
-     * @param filename File that contains the list of stops on route in order
-     * @return The number of zones that the user would have to go through (put at the very end of the class)
-     * @throws FileNotFoundException
+    /*
+     * This method is designed to return the number of zones that the user would have to go through.
+     * @return int (zones)
      */
-    public int zoneNumber(String filename) throws FileNotFoundException {
+    public int zoneNumber(String filename) throws FileNotFoundException{
         fillMap(filename);
-        zone = 0;
-        int start = -1;
-        int stop = -1;
-        for(Integer key: routeMap.keySet()){
-            if(key.equals(originID)){
-                start = key;
-            }
-            if(key.equals(destID)){
-                stop = key;
-            }
-        }
-        for(int idx = start; idx <= stop; idx++){
+        zone = 1;
+        for(int idx = originID; idx <= destID; idx++){
             if(routeMap.get(idx)){
                 zone++;
             }
