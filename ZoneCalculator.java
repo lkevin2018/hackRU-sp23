@@ -1,10 +1,14 @@
 import java.io.*;
 import java.util.*;
-import java.lang.Math.*;
 
-/*The user is prompted to select the route that they wish to take, and the user then selects where they are getting on and off of the bus, and finally, it asks 
-the user if they are going inbound or outbound. With this information, the system gives the user the number of zones that they are passing through.
-*/
+/*
+ * ZoneCalculator calculates the amount of zones a passenger must purchase in order to board an NJ-Transit Bus line.
+ * @authors:
+ *          Kevin Joseph
+ *          Reese Garcia
+ *          Sunny Patel
+ *          Arjun Tomar
+ */
 
 public class ZoneCalculator{
 
@@ -16,10 +20,12 @@ public class ZoneCalculator{
     private int originID; // orgin stop number
     private int destID; // destination stop number
     private Map<Integer, Boolean> routeMap = new HashMap<>(); //Hashmap used to track stops imported from data sheet + whether each stop is a zone boundary or not
+    
     /*
      * This method has a void return and is designed to take in the user input to fill private instance variables used to run the ZoneCalculator.
+     * @return Void
      */
-    public void userFill(){
+    private void userFill(){
         Scanner user = new Scanner(System.in);
         
         System.out.println("Enter origin: ");
@@ -37,6 +43,10 @@ public class ZoneCalculator{
         user.close();
 
     }
+    /*
+     * This method fillMap fills the private instance variable HashMap and fills it with all stops along the specified route.
+     * @return Void
+     */
     private void fillMap(String f) throws FileNotFoundException{
         String fileName = f;
         String line;
@@ -44,10 +54,10 @@ public class ZoneCalculator{
             while((line = bR.readLine()) != null){
                 String[] lineDetails = line.split(",");
                 if(lineDetails[0].equals(origin)){
-                    originID = Integer.parseInt(lineDetails[1]);
+                    originID = Integer.parseInt(lineDetails[1]) - 1;
                 }
                 if(lineDetails[0].equals(destination)){
-                    destID = Integer.parseInt(lineDetails[1]);
+                    destID = Integer.parseInt(lineDetails[1]) - 1;
                 }
                 routeMap.put(Integer.parseInt(lineDetails[1]), Boolean.parseBoolean(lineDetails[2]));
             }
@@ -57,22 +67,14 @@ public class ZoneCalculator{
     }
     
     /*
-     * This method is designed to return the number of zones that the user would have to go through (put at the very end of the class)
+     * This method is designed to return the number of zones that the user would have to go through.
+     * @return int (zones)
      */
     public int zoneNumber(String filename) throws FileNotFoundException{
+        userFill();
         fillMap(filename);
-        zone = 0;
-        int start = -1;
-        int stop = -1;
-        for(Integer key: routeMap.keySet()){
-            if(key.equals(originID)){
-                start = key;
-            }
-            if(key.equals(destID)){
-                stop = key;
-            }
-        }
-        for(int idx = start; idx <= stop; idx++){
+        zone = 1;
+        for(int idx = originID; idx <= destID; idx++){
             if(routeMap.get(idx)){
                 zone++;
             }
