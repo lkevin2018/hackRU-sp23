@@ -5,6 +5,8 @@
 
 <h2>A zone calculator for the NJ-T Bus system.</h2>
 
+<h5>Authors: Kevin Joseph, Reese Garcia, Sunny Patel, Arjun Tomar.</h5>
+
 <p>Welcome to our repository. Here you'll find the back-end and front-end code used to establish our group's hackRU project.</p>
 <br>
 
@@ -26,3 +28,6 @@
   <li> The program will ask you to input `Route Number`, `Origin`, `Destination`, and `Direction`, which are case sensitive.</li>
   <li> Enjoy your result!</li>
 </ol>
+
+[Demonstration Video](https://www.youtube.com/watch?v=I49sSKPwZBY)
+
