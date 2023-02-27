@@ -7,7 +7,7 @@
 
 <h5>Authors: Kevin Joseph, Reese Garcia, Sunny Patel, Arjun Tomar.</h5>
 
-<p>Welcome to our repository. Here you'll find the back-end and front-end code used to establish our group's hackRU project.</p>
+<p>Welcome to our repository. Here you'll find the back-end and front-end code used to establish our group's HackRU project.</p>
 <br>
 
 <h3>How to run GUI interface (JavaFX)?</h3>
